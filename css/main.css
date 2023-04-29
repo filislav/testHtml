@@ -1,0 +1,54 @@
+body {
+    background-color:whitesmoke;
+}
+
+h1{
+    text-align: center;
+}
+.main-text{
+    color:black;
+    size: 12px;
+}
+.red-text{
+    color:red;
+}
+#thin-text{
+    color:gray;
+    text-align: right;
+}
+
+div i, b{
+    color:blue;
+}
+#butt{
+    width: 50%;
+    height: 50%;
+    display:block;
+    position: relative;
+    margin:0 auto;
+}
+.butt{
+    padding:10px
+}
+.m-form {
+    width: 300px;
+    position:absolute;
+    left:0;
+    right:0;
+    margin:0 auto;
+    top:50%;
+    transform:translate(0,-50%);  
+}
+.male{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.gender{
+    display: flex;
+    justify-content:center;
+}
+#main-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
