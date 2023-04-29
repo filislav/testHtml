@@ -10,7 +10,7 @@
 <body>
     <h1>New practice sait</h1>
     <div class="m-form">
-        <form id="main-form">
+        <form id="main-form" method="post">
             <label for="name">Имя:</label>
             <input type="text" name="name" placeholder="Имя" id="name">
             <label for="pass">Пароль:</label>
@@ -20,7 +20,7 @@
             <span>Пол:</span>
             <div class="gender">
                 <div class="male">
-                    <input type="radio" name="state" id="male" value="Мужской">
+                    <input type="radio" name="state" id="male" value="Мужской" checked>
                     <label for="male">Мужской</label>
                 </div>
                 <div class="male">
@@ -28,9 +28,12 @@
                     <label for="female">Женский</label>
                 </div>
             </div>
-            <div class="butt">
-                <input id="butt" type="button" name="submit" value="Готово">
+            <div>
+                <span id = "error"></span>
             </div>
+            <div class="butt">
+                <input id="butt" type="submit" name="submit" value="Готово">
+            </div>            
         </form>
     </div>
     <div>

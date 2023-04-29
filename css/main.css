@@ -52,3 +52,6 @@ div i, b{
     flex-direction: column;
     justify-content: space-between;
 }
+#error{
+    color: red;
+}
