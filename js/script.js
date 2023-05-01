@@ -1,23 +1,35 @@
-let date = new Date();
-document.getElementById('date').innerHTML = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`;
-
-let arr = [9,8,2,3,5,7];
-let arr1 = arr.sort();
-console.log(arr1.join(","));
-
-class Person{
-    constructor(name,age,happyness){
-        this.name = name;
-        this.age = age;
-        this.happyness = happyness;
-    }
-    
-    info() {
-        console.log(`${this.name},${this.age},${this.happyness}`); 
-    };
+function hello(){
+    console.log('Hello',this);
 }
 
-let alex = new Person('Alex',19,true);
-let bob = new Person('Bob',20,false);
-alex.info();
-bob.info();
+const person = {
+    name:'Slava',
+    age:41,
+    sayHello: hello,
+    sayHelloWindow: hello.bind(window),
+    logInfo: function(job,phone){
+        console.group(`${this.name} info`);
+        console.log(`Name is ${this.name}`);
+        console.log(`Age is ${this.age}`);
+        console.log(`Job is ${job}`);
+        console.log(`Phone is ${phone}`);
+        console.groupEnd();
+    }
+}
+
+const lena = {
+    name:"Lena",
+    age:35
+}
+// person.logInfo.bind(lena,"Frontend","8-888-999")();
+// person.logInfo.call(lena,"Frontend","8-888-999");
+// person.logInfo.apply(lena,["Frontend","8-888-999"]);
+
+let arr = [1,2,3,4,5];
+
+Array.prototype.mult = function(n){
+    return this.map((i)=>{
+        return i*n;
+    })
+}
+console.log(arr.mult(3));
