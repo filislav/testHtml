@@ -5,6 +5,9 @@ body {
 h1{
     text-align: center;
 }
+#date{
+    text-align: center;
+}
 .main-text{
     color:black;
     size: 12px;
