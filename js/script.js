@@ -1,33 +1,14 @@
-let form = document.getElementById('main-form');
-let button = document.querySelector('.btn');
+interval = setInterval(my_func,1000);
 
-
-let alertClick = ()=>{
-    alert("Событие состоялось!!!");
-};
-button.addEventListener('click',alertClick);
-
-let checkForm = (event)=>{
-    event.preventDefault();
-    let name = form.name.value;
-    let pass = form.pass.value;
-    let repass = form.repass.value;
-    let gender = form.state.value;
-
-    let fail ="";
-
-    if(name==""||pass==""||repass==""){
-        fail = 'Заполните все поля!';
-    }else if(pass!=repass){
-        fail = 'Пароли не одинаковые';
+let counter = 0;
+function my_func(){   
+    counter++;
+    console.log(`counter = ${counter}`);
+    if(counter==10){
+        clearInterval(interval);
     }
-    if (fail!=""){
-        document.getElementById('error').innerHTML = fail;
-        console.log(`Имя: ${name}, Пароль: ${pass}, Подтв.пароля: ${repass},Пол: ${gender}`)
+}
 
-    }else{    
-        window.location ='https://www.ya.ru';
-    }
-    return false;
-};
-form.addEventListener('submit',checkForm);
+setTimeout(()=>{
+    alert("Работа программы завершена");
+},10000);
