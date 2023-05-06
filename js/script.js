@@ -30,9 +30,10 @@ const person2 = {name:"Elena",age:32,job:"cop"};
 
 function bind(context,fn){
     return function(...args){
-        return fn.apply(context,args);
+        return fn.apply(context,args); //args пустой []0
     }
 }
+
 bind(person1,logPerson)();
 bind(person2,logPerson)();
 
