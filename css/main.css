@@ -19,7 +19,9 @@ h1{
     color:gray;
     text-align: right;
 }
-
+#result{
+    text-align: center;
+}
 div i, b{
     color:blue;
 }
@@ -29,9 +31,11 @@ div i, b{
     display:block;
     position: relative;
     margin:0 auto;
+    padding:10px;
+    background-color: bisque;
 }
-.butt{
-    padding:10px
+#in{
+    margin-bottom: 10px;
 }
 .m-form {
     width: 300px;

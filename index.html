@@ -10,12 +10,19 @@
 <body>
     <h1>New practice sait</h1>
     <h2 id="date"></h2>
-    <div>
-        <button class="btn">Click Me</button>
+    <div class="m-form">
+        <form id="main-form" method="post">
+            <label for="polindrom">Полиндром ?</label> 
+            <input type="text" name="polindrom" id="in" placeholder="Введите слово">
+            <div>
+                <input id="butt" type="submit" name="submit" value="Проверка"></input>
+            </div>            
+        </form>
+        <div class="out">
+            <p id="result">Результат</p>
+        </div>
     </div>
-    <div class="out">
-
-    </div>
+    
     <noscript>Включите JavaScript!!!</noscript>
     <script src="./js/script.js"></script>    
 </body>
