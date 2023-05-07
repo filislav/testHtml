@@ -1,13 +1,9 @@
-let form = document.getElementById('main-form');
-let result = document.getElementById('result');
-let isPolindrom = (event)=>{
-    event.preventDefault();
-    let input = form.polindrom.value;
-    input = input.toLowerCase();
-    result.innerHTML = `Результат : ${input===input.split("").reverse().join("")}`;   
-    return false;
+let range = document.querySelector('.number');
+let rangeNum = document.querySelector('.range-num');
+rangeNum.innerHTML = 0;
+range.oninput = function (){
+    console.log(this.value);
+    rangeNum.style.left = (this.value - 20) +"px";
+    rangeNum.innerHTML = this.value;
 }
-
-
-form.addEventListener('submit',isPolindrom);
 
