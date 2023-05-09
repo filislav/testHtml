@@ -1,64 +1,38 @@
-console.log('Request data...');
-
-// setTimeout(()=>{
-//     console.log('Preparing data...');
-//     const backendData = {
-//         server:"aws",
-//         port:22334,
-//         status:"working"
-//     };
-
-//     setTimeout(()=>{
-//         backendData.modified = true;
-//         console.log('Data recieved:',backendData);
-//     },2000);
-
-// },2000);
-// const p = new Promise(function(resolve,reject){
-//     setTimeout(()=>{
-//         console.log('Preparing data...');
-//         const backendData = {
-//         server:"aws",
-//         port:22334,
-//         status:"working"
-//         };
-//         resolve(backendData);
-//     },2000);
-// });
-
-
-// p.then((data)=>{
-//     return new Promise((resolve,reject)=>{
-//         setTimeout(()=>{
-//             data.modified = true;
-//             //console.log('Data recieved:',data);
-//             resolve(data);
-//         },2000);        
-//     });    
-// })
-// .then((clientData)=>{
-//     clientData.fromPromise = true;
-//     return clientData;
-// })
-// .then((data)=>{
-//     console.log("Data recieved:",data);
-// })
-// .catch((err=>{
-//     console.log("Error:",err);
-// }))
-// .finally(()=>{
-//     console.log('finally');
-// })
-
-const sleep = ms => {return new Promise(resolve=>{setTimeout(()=>resolve(),ms)})};
-
-// timeout(2000).then(()=>{console.log('after 2 seconds')});
-// timeout(3000).then(()=>{console.log('after 3 seconds')});
-
-Promise.all([sleep(2000),sleep(3000)]).then(()=>{ //когда все промисы отработают
-    console.log('All promises');
+const person = Object.create({
+    calculateAge(){
+        console.log('Age:',new Date().getFullYear() - this.birthYear);
+    }
+},
+{
+    name:{
+        value:'Slava',
+        enumerable:true,
+        writable:true,
+        configurable:true,
+    },
+    birthYear:{
+        value: 1982,
+        enumerable:false,
+        writable:true,
+        configurable:false,
+    },
+    age:{
+        get() {
+            return new Date().getFullYear() - this.birthYear;
+        },
+        set(val) {
+            //document.body.style.background ='red';
+            this.birthYear = new Date().getFullYear() - val;
+            console.log(this.birthYear);
+        }
+    }
 });
 
-Promise.race([sleep(2000),sleep(3000)]).then(()=>{ //когда первый промис отработает
-    console.log('Race promises');
-});
+// const person = {
+//     name:'Slava',
+//     birthYear: 1982
+// }
+console.log(person);
+for(let key in person){
+    console.log('Key',key,person[key]);
+}
