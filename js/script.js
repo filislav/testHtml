@@ -1,32 +1,65 @@
-console.log("staring");
-const delay = ms => {
-    return new Promise(r => setTimeout(()=>r(),ms));
-};
+//objects
+const person = {
+    name:"Slava",
+    age:23,
+    job:"Fullstack"
+}
 
-const url = 'https://jsonplaceholder.typicode.com/todos';
+const op = new Proxy(person,{
+    get(target,prop){
+        console.log(`Getting prop: ${prop}`);
+        if(!(prop in target)){
+            return prop.split('_').map(p=>target[p]).join(' ');
+        }
+        return target[prop];
+    },
+    set(target,prop,value){
+        if(prop in target){
+            target[prop] = value;
+        }else{
+            throw new Error(`No prop ${prop} in target`);
+        }
+    },
+    has(target,prop){
+        return ["name","age","job"].includes(prop);
+    },
+    deleteProperty(target,prop){
+        console.log(`Deleting ....`,prop);
+        delete target[prop];
+        return true;
+    }
+})
 
-async function fetchAsyncTodos(){ 
-    console.log('FetchTodo started');
-    try{
-        await delay(2000) // пока промис delay() не зарезолвится мы не перейдем к следующей строке кода. Это работа await
-        const responce = await fetch(url);
-        const data = await responce.json();
-        console.log('Data:',data);
-    }catch(e){
-        console.error(e);
-    }finally{
-        console.log('finally...');
+//functions
+const log = text =>`Log: ${text}`;
+
+const fp = new Proxy(log,{
+    apply(target,thisArg,args){ //thisArg - это контекст, если мы задаем его с помощью bind или call,args - массив аргументов
+        console.log('Calling fn...');
+        return target.apply(thisArg,args).toUpperCase();
+    }
+})
+//Classes
+class Person{
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
     }
 }
 
-fetchAsyncTodos(); //эта функция всегда возвращает нам промис последнего await и у нее так же можно вызвать метод then()
-// function fetchTodos(){
-//     console.log('FetchTodo started');
-//    return delay(2000)
-//    .then(()=>fetch(url)) // в ES6 если мы не пишем return то js автоматически возвращает нам результат
-//    .then(responce=>responce.json()); 
-// }
+const PersonProxy = new Proxy(Person,{
+    construct(target,args){
+        console.log("Construct...");
 
-// fetchTodos().then(data => {
-//     console.log('Data:',data);
-// }).catch(e=>{console.error(e)});
+        return new Proxy(new target(...args),{
+            get(t,prop){
+                console.log(`Getting prop: ${prop}`)
+                return t[prop];
+            }
+        })
+    }
+
+})
+
+const p = new PersonProxy("Maxim",28);
+
