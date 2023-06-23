@@ -8,7 +8,7 @@ const person = {
 const op = new Proxy(person,{
     get(target,prop){
         console.log(`Getting prop: ${prop}`);
-        if(!(prop in target)){
+        if(!(prop in target)){ //пример с несущ полем для вывода всех полей op.name_age_job вернет значения через пробел
             return prop.split('_').map(p=>target[p]).join(' ');
         }
         return target[prop];
